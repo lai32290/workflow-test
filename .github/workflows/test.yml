@@ -1,0 +1,21 @@
+name: Exemplo de Workflow Manual com Seleção de Branch (select)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Selecionar Branch
+      id: branch
+      run: |
+        echo "::set-output name=branch::$(echo -e "branch1\nbranch2\nbranch3" | fzf)"
+    - name: Checkout da Branch
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ steps.branch.outputs.branch }}
+    - name: Exibir nome da Branch escolhida
+      run: |
+        echo "A Branch selecionada foi: ${{ steps.branch.outputs.branch }}"
+
