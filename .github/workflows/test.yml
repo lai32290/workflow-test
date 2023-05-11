@@ -1,4 +1,4 @@
-name: Exemplo de Workflow Manual com Seleção de Branch (select)
+name: Test workflow
 
 on:
   workflow_dispatch:
